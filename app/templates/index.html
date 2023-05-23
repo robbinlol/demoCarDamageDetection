@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Third Container (Submit damage assessment)  -->
+<div class="container-fluid bg-2 text-center" id="third">
+  {% if scroll %}
+  <script>
+    document.location.hash = '#' + '{{ scroll }}';
+  </script>
+  {% endif %}
+  <h3>上传车辆外观损伤图片</h3>
+  <div class=flashes>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissable" role="alert">
+      <!-- <button type="button" class="close" data-dismiss="alert" arialabel="Close">
+        <span aria-hidden="true">&times;</span>
+
+      </button> -->
+      <p>{{ message }}</p>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+  <!--   <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+  <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+  <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Upload image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Submit</a>
+  </div> -->
+
+  <div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="fileinput-preview thumbnail" data-trigger="fileinput" id="window"></div>
+    <div>
+      <form action="assessment" method="POST" enctype="multipart/form-data" class="form-inline">
+        <span class="btn btn-default btn-file">
+          <span class="fileinput-new">选择图片</span>
+          <span class="fileinput-exists">更改</span>
+          <input type="file" id="filename" name="file"></span>
+        <button type="submit" class="btn btn-default fileinput-exists" id="analyze" onclick="loading();">上传</button>
+      </form>
+    </div>
+
+  </div>
+  <div id="loading"></div>
+  <h4>图片上传须知：</h4>
+  <p>请上传侧重于一个主要损坏区域的图像(例如，正面、侧面或后方)。</p>
+  <p>尽量包含大部分的汽车在图片中，除非它不能很好地捕捉损坏。如果有一个以上的主要受损区域，您可以上传和评估多张图片。</p>
+  <p>最大文件大小为10MB。</p>
+  <p>目前只支持jpg, jpeg, tiff和png格式。</p>
+</div>
+</div>
+{% endblock %}

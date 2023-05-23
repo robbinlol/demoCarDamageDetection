@@ -1,0 +1,10 @@
+.vscode/
+app/yolox/*.pth
+app/yolox/*.txt
+app/static/results/
+app/static/uploads
+app/static/models
+app/*.pyc
+app/*.back
+app/__pycache__
+app/yolox/.gitignore
